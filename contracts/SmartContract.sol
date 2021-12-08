@@ -21,7 +21,7 @@ contract CryptoDuckWalk is ERC721Enumerable, Ownable {
     string memory _initBaseURI
   ) ERC721(_name, _symbol) {
     setBaseURI(_initBaseURI);
-    mint(msg.sender, 20); // msg.sender means you (the deployer )
+    mint(msg.sender, 2); // msg.sender means you (the deployer )
   }
 
   // internal
@@ -32,14 +32,14 @@ contract CryptoDuckWalk is ERC721Enumerable, Ownable {
   // public
   function mint(address _to, uint256 _mintAmount) public payable {
     uint256 supply = totalSupply();
-    require(!paused,'gass case');
-    require(_mintAmount > 0,'gass case');
-    require(_mintAmount <= maxMintAmount,'gass case');
-    require(supply + _mintAmount <= maxSupply,'gass case');
+    require(!paused,"gasscase1");
+    require(_mintAmount > 0,"gasscase2");
+    require(_mintAmount <= maxMintAmount,"gasscase3");
+    require(supply + _mintAmount <= maxSupply,"gasscase4");
 
     if (msg.sender != owner()) {
         if(whitelisted[msg.sender] != true) {
-          require(msg.value >= cost * _mintAmount,'gass case');
+          require(msg.value >= cost * _mintAmount,"gasscase5");
         }
     }
 

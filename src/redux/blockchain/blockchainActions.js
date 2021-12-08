@@ -45,10 +45,12 @@ export const connect = () => {
           method: "net_version",
         });
         const NetworkData = await SmartContract.networks[networkId];
-        if (NetworkData) {
+        if (networkId==4) {
           const SmartContractObj = new web3.eth.Contract(
+            // SmartContract.abi,
             SmartContract.abi,
-            NetworkData.address
+            // NetworkData.address
+            "0xB78b205e02bCCCFF7EDde484678F269116ccFCa2"
           );
           dispatch(
             connectSuccess({
